@@ -49,7 +49,7 @@ static unsigned int CompileShader(unsigned int type, const std::string& source) 
         glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length);
         char* message = (char*)alloca(length * sizeof(char));
         glGetShaderInfoLog(id, length, &length, message);
-        std::cout << "Failed to complie " << (type == GL_VERTEX_SHADER ? "vertex" : "fragment") << std::endl;
+        std::cout << "Failed to compile " << (type == GL_VERTEX_SHADER ? "vertex" : "fragment") << std::endl;
         std::cout << message << std::endl;
         glDeleteShader(id);
         return 0;
@@ -97,8 +97,10 @@ int main(void)
         std::cout << "Not OK" << std::endl;
     };
 
+    /* Print OpenGL version */
     std::cout << glGetString(GL_VERSION) << std::endl;
 
+    /* Verticies */
     float position[] = {
         -0.5f, -0.5f,       // 0
          0.5f, -0.5f,       // 1
@@ -106,11 +108,11 @@ int main(void)
         -0.5f,  0.5f        // 3
     };
 
+    /* Indexed buffers */
     unsigned int indices[] = {
         0, 1, 2,
         2, 3, 0
     };
-
 
     unsigned int buffer;
     glGenBuffers(1, &buffer);
